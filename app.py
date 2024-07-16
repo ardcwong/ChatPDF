@@ -12,7 +12,7 @@ from langchain.chat_models import ChatOpenAI
 from htmlTemplates import css, bot_template, user_template
 
 api_key = st.secrets['api_key']
-openai.api_key = api_key
+chatopenai.api_key = api_key
 client = ChatOpenAI(api_key=api_key)
 
 # creating custom template to guide llm model
