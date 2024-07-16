@@ -11,9 +11,7 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.chat_models import ChatOpenAI
 from htmlTemplates import css, bot_template, user_template
 
-api_key = st.secrets['api_key']
-# chatopenai.api_key = api_key
-client = ChatOpenAI(api_key=api_key)
+
 
 # creating custom template to guide llm model
 custom_template = """Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.
@@ -74,7 +72,10 @@ def handle_question(question):
 
 
 def main():
-    load_dotenv()
+    # load_dotenv()
+    openai_api_key = st.secrets['api_key']
+    # chatopenai.api_key = api_key
+    client = ChatOpenAI(api_key=openai_api_key)
     st.set_page_config(page_title="Chat with multiple PDFs",page_icon=":books:")
     st.write(css,unsafe_allow_html=True)
     if "conversation" not in st.session_state:
