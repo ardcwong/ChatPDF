@@ -49,7 +49,10 @@ def get_vectorstore(chunks):
 
 # generating conversation chain  
 def get_conversationchain(vectorstore):
-    llm=ChatOpenAI(temperature=0.2)
+    openai_api_key = st.secrets['api_key']
+    # # chatopenai.api_key = api_key
+    # client = ChatOpenAI(api_key=openai_api_key)
+    llm=ChatOpenAI(api_key=openai_api_key, temperature=0.2)
     memory = ConversationBufferMemory(memory_key='chat_history', 
                                       return_messages=True,
                                       output_key='answer') # using conversation buffer memory to hold past information
@@ -73,9 +76,7 @@ def handle_question(question):
 
 def main():
     # load_dotenv()
-    openai_api_key = st.secrets['api_key']
-    # chatopenai.api_key = api_key
-    client = ChatOpenAI(api_key=openai_api_key)
+
     st.set_page_config(page_title="Chat with multiple PDFs",page_icon=":books:")
     st.write(css,unsafe_allow_html=True)
     if "conversation" not in st.session_state:
