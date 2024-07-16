@@ -11,6 +11,10 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.chat_models import ChatOpenAI
 from htmlTemplates import css, bot_template, user_template
 
+api_key = st.secrets['api_key']
+openai.api_key = api_key
+client = ChatOpenAI(api_key=api_key)
+
 # creating custom template to guide llm model
 custom_template = """Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.
 Chat History:
